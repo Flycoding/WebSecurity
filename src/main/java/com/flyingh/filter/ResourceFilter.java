@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 public class ResourceFilter implements Filter {
 
@@ -19,11 +20,13 @@ public class ResourceFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		final HttpServletRequest req = (HttpServletRequest) request;
+		final HttpServletResponse resp = (HttpServletResponse) response;
 		final String referer = req.getHeader("referer");
 		System.out.println(referer);
 		if (referer == null || !referer.startsWith("http://localhost:8080/app")) {
-			response.setContentType("text/html;charset=UTF-8");
-			response.getWriter().write("非法请求");
+			resp.sendError(404);
+			// response.setContentType("text/html;charset=UTF-8");
+			// response.getWriter().write("非法请求");
 			return;
 		}
 		chain.doFilter(request, response);
