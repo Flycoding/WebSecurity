@@ -5,10 +5,25 @@
 	version="2.1">
 	<tlib-version>1.0</tlib-version>
 	<short-name>app</short-name>
-	<uri>/token</uri>
+	<uri>/app</uri>
 	<tag>
 		<name>token</name>
 		<tag-class>com.flyingh.tags.TokenTag</tag-class>
 		<body-content>empty</body-content>
+	</tag>
+	<tag>
+		<name>url</name>
+		<tag-class>com.flyingh.tags.UrlTag</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<name>var</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>url</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
 	</tag>
 </taglib>

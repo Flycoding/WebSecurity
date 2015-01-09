@@ -1,9 +1,12 @@
 package com.flyingh.app;
 
+import java.io.IOException;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -36,6 +39,12 @@ public class HomeController {
 		model.addAttribute("serverTime", formattedDate);
 
 		return "home";
+	}
+
+	@RequestMapping(value = "/hello", method = RequestMethod.GET)
+	public void hello(HttpServletRequest request, HttpServletResponse response, String name, Integer age) throws IOException {
+		response.setContentType("text/html;charset=UTF-8");
+		response.getWriter().write("name:" + name + ",age:" + age);
 	}
 
 }
