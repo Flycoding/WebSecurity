@@ -1,18 +1,30 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Index</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <link rel="stylesheet" href="">
+    <script type="text/javascript" src="resources/js/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript">
+        var released = false;
+        function closePage() {
+            if (!released) {
+                $.ajax({
+                    type: 'GET',
+                    async: false,
+                    url: 'window/unload',
+                    success: function () {
+                        released = true;
+                    }
+                });
+            }
+        }
+        window.onbeforeunload=closePage;
+        window.onunload=closePage;
+    </script>
 </head>
 <body>
-	<c:url var="url" value="/home"></c:url>
-	<a href='${url }'>Home</a><br/>
-	<img alt="image"
-		src="${pageContext.request.contextPath }/resources/img/img.jpg">
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath }/resources/js/a.js"></script>
+	<h1>Hello world!</h1>
 </body>
 </html>
